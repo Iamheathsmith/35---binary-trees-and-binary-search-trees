@@ -1,0 +1,17 @@
+{
+  "name": "bts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "BinarySearchTree.js",
+  "dependencies": {
+    "eslint": "^4.18.2",
+    "jest": "^22.4.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "jest --verbose",
+    "lint": "eslint ."
+  },
+  "author": "",
+  "license": "ISC"
+}

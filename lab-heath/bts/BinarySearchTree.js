@@ -1,14 +1,6 @@
 'use strict';
 
-
-class TreeNode {
-  constructor(value) {
-    this.value = value;
-    this.left = null;
-    this.right = null;
-  }
-}
-/* need this here for  */
+const TreeNode = require('./node/TreeNode');
 
 class BST {
   constructor(root = null) {
@@ -64,12 +56,15 @@ class BST {
 
   /* balance */
   isBalanced(root) {
-    if (root === null) { // Base case
-      return true;
+    if (root === null) {
+      return null;
     }
+    
     var heightDifference = Math.abs(this.getHeight(root.left) - this.getHeight(root.right));
     if (heightDifference > 1) {
       return false;
+    } else if (heightDifference = 1){
+      return true;
     } else {
       return this.isBalanced(root.left) && this.isBalanced(root.right);
     }
@@ -97,7 +92,7 @@ class BST {
   }
 
   
-  // -------------------------------------------
+  
   /* helper for remove */
   findRnR(node) {
     return this._findRnR(node);
@@ -117,25 +112,26 @@ class BST {
     }
   }
 
-  // -------------------------------------------  
-
-
+  /* remove */
   remove(value) {
     let parent = this.findParent(value);
     this.removeNode(value, parent);
+    return 'complete';
   }
 
-  /* remove */
+  /* remove heavyLifter*/
   removeNode(value, parent) {
     let current;
     let direction;
 
 
-    //find the current node to remove.
+    //find the current node to remove and sets direction.
     if(parent.right.value === value) {
       current = parent.right;
+      direction = 'right';
     } else {
       current = parent.left;
+      direction = 'left';
     }
 
     //remove no kids node
@@ -147,20 +143,12 @@ class BST {
       }
     }
 
-    //getting the direction of current from parent
-    if (parent.right.value === value) {
-      direction = 'right';
-    } else {
-      direction = 'left';
-    }
-
     //remove with 1 kids node
     if (current.right === null) {
       if (current.left !== null) {
         parent[direction] = current.left;
       }
     } 
-
     if (current.left === null) {
       if (current.right !== null) {
         parent[direction] = current.right;
@@ -169,36 +157,14 @@ class BST {
 
     //removeing with 2 kids on node
     if(current.right !== null && current.left !== null) {
-      console.log('i have 2 kids');
       let newNode = this.findRnR(current.left);
       this.remove(newNode.value);
       current.value = newNode.value;
     }
-
   }
+
+
 }
 
 
-
-let bst = new BST();
-//root
-bst.insert(new TreeNode(10));
-
-bst.insert(new TreeNode(5));
-bst.insert(new TreeNode(20));
-bst.insert(new TreeNode(22));
-bst.insert(new TreeNode(15));
-bst.insert(new TreeNode(17));
-bst.insert(new TreeNode(16));
-bst.insert(new TreeNode(13));
-
-// console.log('finding', bst.find(8));
-// console.log('finding', bst.find(100));
-// console.log('hieght is', bst.getHeight(bst.find(5)));
-// console.log('balanced?', bst.isBalanced(bst.find(5)));
-// console.log('this is removed after', bst.removeNode(8));
-// console.log('finding parent', bst.findParent(16));
-console.log('removeing', bst.remove(20));
-console.log('finding', bst.find(20));
-console.log('finding', bst.find(17));
-console.log('%%%%%%%%%%%%%%%%%%%',bst);
+module.exports = BST;
