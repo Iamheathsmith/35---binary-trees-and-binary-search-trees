@@ -54,6 +54,12 @@ if (test === 'postorder'){
   console.log(binaryTree.preOrd);
 }
 
+let funny = function() {
+  while(true) {
+    console.log('HAAHAHAHHAHAHAHAHHA');
+  }
+};
+
 if (test === 'insert'){
   bst.insert(new TreeNode(4));
   console.log(bst.find(4));
@@ -99,12 +105,3 @@ if (test === 'help'){
   console.log('** -- to remove a node, type in "node index.js WTF"');
 }
 
-
-
-
-
-let funny = function() {
-  while(true) {
-    console.log('HAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAHHAAHAHAHHAHAHAHAH');
-  }
-};
